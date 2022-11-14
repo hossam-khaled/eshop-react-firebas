@@ -1,18 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.scss";
+// Pages
+import { Home, Contact, Login, Register, Reset } from "./pages";
+// Components
 import { Header, Footer } from "./components";
-
-import {
-  Admin,
-  Cart,
-  Contact,
-  Home,
-  orderHistory,
-  Login,
-  Register,
-} from "./pages/index";
-// import React from "react";
-// import React, { useState } from 'react';
 
 function App() {
   return (
@@ -22,11 +12,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order-history" element={<orderHistory />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reset" element={<Reset />} />
         </Routes>
         <Footer />
       </BrowserRouter>
