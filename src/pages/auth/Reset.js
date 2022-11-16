@@ -1,7 +1,7 @@
 import styles from "./auth.module.scss";
 import { Link } from "react-router-dom";
 import resetImg from "../../assets/forgot.png";
-import Card from "../cart/Cart";
+import Card from "../../components/card/Card";
 
 const Reset = () => {
   return (

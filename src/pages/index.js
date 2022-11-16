@@ -1,6 +1,5 @@
 
 // export { default as Admin } from "./admin/Admin";
-// export { default as Cart } from "./cart/Cart";
 // export { default as orderHistory } from "./orderHistory/orderHistory";
 
 export { default as Home } from "./home/Home";
