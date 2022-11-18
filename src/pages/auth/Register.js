@@ -3,7 +3,7 @@ import registerImg from "../../assets/register.png";
 import Card from "../../components/card/Card";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../../firebase/config";
@@ -23,23 +23,22 @@ const Register = () => {
       setisLoader(true);
       createUserWithEmailAndPassword(getAuth(), email, password)
         .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
+          // const user = userCredential.user;
+          // console.log(user);
           toast.success("Registration successful....");
           navigate("/login");
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          // const errorCode = error.code;
+          // const errorMessage = error.message;
           toast.error(error.message);
-          console.log(errorCode, errorMessage);
+          // console.log(errorCode, errorMessage);
           setisLoader(false);
         });
     }
   };
   return (
     <>
-      <ToastContainer />
       {isLoader && <Loader />}
       <section className={`container ${styles.auth}`}>
         <Card>
