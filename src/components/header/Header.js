@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { FaShoppingCart, FaTimes } from "react-icons/fa";
+import { FaShoppingCart, FaTimes, FaUserCircle } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { SET_ACTIVE_USER } from "../../redux/slice/authSlice";
 
 const logo = (
   <div className={styles.logo}>
@@ -30,8 +32,31 @@ const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+  // to get the sign in user
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log(user);
+        // console.log(user.displayName);
+        setUserName(user.displayName);
+
+        dispatch(
+          SET_ACTIVE_USER({
+            email: user.email,
+            userName: user.displayName,
+            userID: user.uid,
+          })
+        );
+      } else {
+        setUserName("");
+      }
+    });
+  }, []);
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -89,6 +114,10 @@ const Header = () => {
                 <NavLink to="/login" className={activeLink}>
                   Login
                 </NavLink>
+                <a href="#">
+                  <FaUserCircle size={16}></FaUserCircle>
+                  Hi, {userName}
+                </a>
                 <NavLink to="/register" className={activeLink}>
                   Register
                 </NavLink>
