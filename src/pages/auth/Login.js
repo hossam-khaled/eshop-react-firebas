@@ -4,6 +4,7 @@ import loginImg from "../../assets/login.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
+
 import Card from "../../components/card/Card";
 import {
   getAuth,
@@ -24,7 +25,7 @@ const Login = () => {
     // console.log(email, password);
     signInWithEmailAndPassword(getAuth(), email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // console.log(user);
         setisLoader(true);
         toast.success("Login successful....");

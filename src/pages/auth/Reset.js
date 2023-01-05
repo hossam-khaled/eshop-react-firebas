@@ -4,7 +4,7 @@ import resetImg from "../../assets/forgot.png";
 import Card from "../../components/card/Card";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { auth } from "../../firebase/config";
+// import { auth } from "../../firebase/config";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import Loader from "../../components/loader/Loader";
 
